@@ -61,30 +61,27 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
     @Column(name = "CITY")
     private String city;
     @Size(max = 2)
-    @Pattern(regexp = "[A-Z]{2}",
-            message = "State should be two uppercase characters.")
+    @Pattern(regexp = "[A-Z]{2}", message = "State should be two uppercase characters.")
     @Column(name = "STATE")
     private String state;
-    @Pattern(regexp = "[0-9]{5}(-[0-9]{4})?$",
-            message = "Zipcode should be 5 digits with options four digits (e.g. 99999-9999)")
+    @Pattern(regexp = "[0-9]{5}(-[0-9]{4})?$", message = "Zipcode should be 5 digits with options four digits (e.g. 99999-9999)")
     @Size(max = 11)
     @Column(name = "ZIP")
     private String zip;
-    @Pattern(regexp = "[0-9]{3}-[0-9]{3}-([0-9]{4})$",
-            message = "Invalid phone/fax format, should be as 999-999-9999")
+    @Pattern(regexp = "[0-9]{3}-[0-9]{3}-([0-9]{4})$", message = "Invalid phone/fax format, should be as 999-999-9999")
     @Size(max = 12)
     @Column(name = "PHONE")
     private String phone;
-    @Pattern(regexp = "[0-9]{3}-[0-9]{3}-([0-9]{4})$",
-            message = "Invalid phone/fax format, should be as 999-999-9999")
+    @Pattern(regexp = "[0-9]{3}-[0-9]{3}-([0-9]{4})$", message = "Invalid phone/fax format, should be as 999-999-9999")
     @Size(max = 12)
     @Column(name = "FAX")
     private String fax;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 40)
     @Column(name = "EMAIL")
     private String email;
     @Size(max = 30)
+    @Pattern(regexp = "^([a-zA-Z]+(?:\\.)?(?:(?:'| )[a-zA-Z]+(?:\\.)?)*)$", message = "Invalid Rep Name.")
     @Column(name = "REP")
     private String rep;
 
@@ -216,13 +213,16 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
 
     /**
      * compareto - compare the manufacturer id
-     * 
+     *
      * @param other
-     * @return 
+     * @return
      */
     @Override
     public int compareTo(ManufacturerEntity other) {
-        return this.manufacturerId = other.getManufacturerId();
+        if(other == null || this.name == null){
+            return -1;
+        }
+        return this.name.compareTo(other.getName());
     }
 
     /**
