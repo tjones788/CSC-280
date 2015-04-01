@@ -24,8 +24,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.usd.csci.manufacturer.ManufacturerEntity;
 
 /**
- * This class represents a Product Entity.  Defines business rules, getters and setters, and comparison methods.
- * 
+ * This class represents a Product Entity. Defines business rules, getters and
+ * setters, and comparison methods.
+ *
  * @author Tyler
  */
 @Entity
@@ -38,7 +39,11 @@ import org.usd.csci.manufacturer.ManufacturerEntity;
     @NamedQuery(name = "ProductEntity.findByQuantityOnHand", query = "SELECT p FROM ProductEntity p WHERE p.quantityOnHand = :quantityOnHand"),
     @NamedQuery(name = "ProductEntity.findByMarkup", query = "SELECT p FROM ProductEntity p WHERE p.markup = :markup"),
     @NamedQuery(name = "ProductEntity.findByAvailable", query = "SELECT p FROM ProductEntity p WHERE p.available = :available"),
-    @NamedQuery(name = "ProductEntity.findByDescription", query = "SELECT p FROM ProductEntity p WHERE p.description = :description")})
+    @NamedQuery(name = "ProductEntity.findByDescription", query = "SELECT p FROM ProductEntity p WHERE p.description = :description"),
+    @NamedQuery(name = "ProductEntity.findAllByProductCode", query = "SELECT p FROM ProductEntity p WHERE p.productCode = :productCode"), //added
+    @NamedQuery(name = "ProductEntity.findAllByManufacturer", query = "SELECT p FROM ProductEntity p WHERE p.manufacturerId = :manufacturerId"), //added
+    @NamedQuery(name = "ProductEntity.findByUnderQuantityOnHand", query = "SELECT p FROM ProductEntity p WHERE p.quantityOnHand < :quantityOnHand") //added
+}) //end named queries
 public class ProductEntity implements Serializable, Comparable<ProductEntity> {
 
     private static final long serialVersionUID = 1L;
@@ -47,8 +52,9 @@ public class ProductEntity implements Serializable, Comparable<ProductEntity> {
     @NotNull
     @Column(name = "PRODUCT_ID")
     private Integer productId;
-    
+
     //Purchase cost must be greater than 0, with 2 places to the right of the decimal.
+    @NotNull
     @DecimalMin("0.01")
     @Column(name = "PURCHASE_COST")
     private BigDecimal purchaseCost;
@@ -56,7 +62,7 @@ public class ProductEntity implements Serializable, Comparable<ProductEntity> {
     @Min(0) //QOH cannot be negative
     @Column(name = "QUANTITY_ON_HAND")
     private Integer quantityOnHand;
-    
+
     //markup cannot be negative or greater than 100, 2 digits to the right of the decimal
     @DecimalMin("0.00")
     @DecimalMax("100.00")
