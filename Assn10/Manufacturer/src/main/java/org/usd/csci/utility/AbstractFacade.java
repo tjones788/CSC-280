@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.usd.csci.manufacturer;
+package org.usd.csci.utility;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import org.usd.csci.manufacturer.InvalidEntityException;
+import org.usd.csci.utility.InvalidEntityException;
 
 /**
  *

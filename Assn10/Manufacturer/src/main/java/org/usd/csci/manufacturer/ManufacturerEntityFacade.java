@@ -4,6 +4,8 @@
  */
 package org.usd.csci.manufacturer;
 
+import org.usd.csci.utility.AbstractFacade;
+import org.usd.csci.utility.InvalidEntityException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,7 +14,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- * Manufacturer Session Bean/Facade - Used to perform CRUD operations on an entity.
+ * Manufacturer Session Bean/Facade - Used to perform CRUD operations on an
+ * entity.
  *
  * @author Tyler
  */
@@ -107,7 +110,7 @@ public class ManufacturerEntityFacade extends AbstractFacade<ManufacturerEntity>
      * @throws Exception
      */
     @Override
-    public void create(ManufacturerEntity manufacturer) throws InvalidEntityException{
+    public void create(ManufacturerEntity manufacturer) throws InvalidEntityException {
         if (manufacturer == null) {
             throw new InvalidEntityException("Manufacturer cannot be null");
         }
@@ -136,7 +139,7 @@ public class ManufacturerEntityFacade extends AbstractFacade<ManufacturerEntity>
         }
         super.create(manufacturer);
     }
-    
+
     /*
      *  Edit - Edit an existing Manufacturer.  ID, Name, Email must be unique.  Rep is required.
      *
@@ -145,7 +148,7 @@ public class ManufacturerEntityFacade extends AbstractFacade<ManufacturerEntity>
      * @throws Exception
      */
     @Override
-    public void edit(ManufacturerEntity manufacturer) throws InvalidEntityException{
+    public void edit(ManufacturerEntity manufacturer) throws InvalidEntityException {
         if (manufacturer == null) {
             throw new InvalidEntityException("Manufacturer CANNOT be null.");
         }

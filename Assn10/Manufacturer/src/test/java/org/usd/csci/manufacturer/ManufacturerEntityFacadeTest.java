@@ -4,6 +4,7 @@
  */
 package org.usd.csci.manufacturer;
 
+import org.usd.csci.utility.InvalidEntityException;
 import java.io.File;
 import java.util.List;
 import javax.inject.Inject;
@@ -65,8 +66,8 @@ public class ManufacturerEntityFacadeTest {
         manufacturer.setRep("Tyler Jones");
         manufacturer.setPhone("555-555-1234");
         manufacturer.setEmail("test123@test123.com");
-        manufacturer.setAddressline1("123 Main St");
-        manufacturer.setAddressline2("PO BOX 123");
+        manufacturer.setAddressLine1("123 Main St");
+        manufacturer.setAddressLine2("PO BOX 123");
         manufacturer.setCity("Vermillion");
         manufacturer.setState("SD");
         manufacturer.setZip("57069-1234");

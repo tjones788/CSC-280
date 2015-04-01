@@ -5,17 +5,22 @@
 package org.usd.csci.manufacturer;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.usd.csci.product.ProductEntity;
 
 /**
  * Manufacturer Entity class created from sample database. Represents a row in
@@ -75,7 +80,7 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
     @Pattern(regexp = "[0-9]{3}-[0-9]{3}-([0-9]{4})$", message = "Invalid phone/fax format, should be as 999-999-9999")
     @Size(max = 12)
     @Column(name = "FAX")
-    private String fax;
+    private String fax;                                    
     @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 40)
     @NotNull(message = "Manufacturer Email is Required and Must be Unique")
@@ -141,7 +146,7 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
      *
      * @return addressline1
      */
-    public String getAddressline1() {
+    public String getAddressLine1() {
         return addressLine1;
     }
 
@@ -150,7 +155,7 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
      *
      * @param addressLine1
      */
-    public void setAddressline1(String addressLine1) {
+    public void setAddressLine1(String addressLine1) {
         this.addressLine1 = addressLine1;
     }
 
@@ -159,7 +164,7 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
      *
      * @return addressline2
      */
-    public String getAddressline2() {
+    public String getAddressLine2() {
         return addressLine2;
     }
 
@@ -168,8 +173,8 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
      *
      * @param addressLine2
      */
-    public void setAddressline2(String addressline2) {
-        this.addressLine2 = addressline2;
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
     }
 
     /*
@@ -352,5 +357,4 @@ public class ManufacturerEntity implements Serializable, Comparable<Manufacturer
     public String toString() {
         return this.name;
     }
-
 }
